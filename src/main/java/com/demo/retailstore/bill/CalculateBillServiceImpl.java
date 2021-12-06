@@ -55,7 +55,7 @@ public class CalculateBillServiceImpl implements CalculateBillService {
         return summaryStatistics.getSum()!=null?summaryStatistics.getSum():BigDecimal.ZERO;
     }
     private BigDecimal calculateRegularDiscount(BigDecimal totalBill){
-        DiscountService discountService = DiscountFactory.getDiscountService(UserType.REGULAR);
+        DiscountService discountService = getDiscountService(UserType.REGULAR);
         return discountService.calculateDiscount(totalBill);
     }
     private BigDecimal sumRegularDiscountAndPercentageDiscount(BigDecimal regularDiscount,BigDecimal percentageDiscount){

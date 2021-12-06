@@ -18,6 +18,7 @@ public class CalculateBillApi {
     @PostMapping("/calculate")
     @ResponseBody
     public BigDecimal calculate(@RequestBody BillRequestDto billRequestDto){
-
+        log.info("Calculating the bill ...");
+        return calculateBillService.calculate(billRequestDto);
     }
 }

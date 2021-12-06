@@ -24,11 +24,6 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public String findProductType(Product product) {
-        return product.getProductType();
-    }
-
-    @Override
     public List<Product> populateProducts(List<Long> productIds) {
         return productIds.stream()
                 .map(productId ->{
