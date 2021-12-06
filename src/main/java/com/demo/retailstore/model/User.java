@@ -3,10 +3,8 @@ package com.demo.retailstore.model;
 import com.demo.retailstore.user.data.UserType;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Getter
@@ -16,8 +14,12 @@ import javax.persistence.Enumerated;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User extends BaseEntity {
+public class User implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", insertable = false, nullable = false, updatable = false)
+    private Long id;
     private String name;
     @Enumerated(EnumType.STRING)
     @Column(length = 100)

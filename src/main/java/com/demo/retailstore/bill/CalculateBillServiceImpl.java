@@ -42,7 +42,7 @@ public class CalculateBillServiceImpl implements CalculateBillService {
     }
     private BigDecimal calculatePercentageDiscountForUser(Long userId, Product product){
         UserType userType = getUserType(userId);
-        if(getProductType(product).equalsIgnoreCase("grocery")){
+        if(getProductType(product).equalsIgnoreCase("Grocery")){
             return BigDecimal.ZERO;
         }
         DiscountService discountService = getDiscountService(userType);

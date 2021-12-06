@@ -10,18 +10,17 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DiscountServiceImplTest {
-
+class AffiliateDiscountServiceTest {
     private DiscountService discountService;
     @BeforeEach
     void setUp() {
-        discountService = new RegularDiscountService();
+        discountService = new AffiliateDiscountService();
     }
     @Test
-    @DisplayName("should calculate the discount for customer")
+    @DisplayName("should calculate the discount for affiate customer")
     void calculateDiscount(){
-        BigDecimal expectedDiscount = new BigDecimal(45);
-        BigDecimal actualDiscount = discountService.calculateDiscount(new BigDecimal(990));
+        BigDecimal expectedDiscount = new BigDecimal(10);
+        BigDecimal actualDiscount = discountService.calculateDiscount(new BigDecimal(100));
         assertEquals(expectedDiscount,actualDiscount);
     }
     @Test
@@ -31,10 +30,11 @@ class DiscountServiceImplTest {
         BigDecimal actualDiscount = discountService.calculateDiscount(null);
         assertEquals(expectedDiscount,actualDiscount);
     }
+
     @Test
-    @DisplayName("Should get user type")
+    @DisplayName("Should get AFFILIATE user type")
     void getUserType() {
-        UserType expectedUserType = UserType.REGULAR;
+        UserType expectedUserType = UserType.AFFILIATE;
         UserType actualUserType = discountService.getUserType();
         Assertions.assertEquals(expectedUserType,actualUserType);
     }

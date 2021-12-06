@@ -1,22 +1,19 @@
 package com.demo.retailstore.discount;
 
 import com.demo.retailstore.user.data.UserType;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
 @Service
-@Slf4j
-@RequiredArgsConstructor
 public class RegularDiscountService implements DiscountService{
-    @Value("${promotion.discount.regular.amount}")
-    BigDecimal regularDiscountAmount;
+   // @Value("${promotion.discount.regular.amount:5}")
+    BigDecimal regularDiscountAmount = new BigDecimal(5);
     @Override
     public BigDecimal calculateDiscount(BigDecimal purchaseAmount) {
-        BigDecimal integralValue = purchaseAmount.divide(BigDecimal.valueOf(100L));
+        if(purchaseAmount==null)
+            return BigDecimal.ZERO;
+        BigDecimal integralValue = purchaseAmount.divideToIntegralValue(BigDecimal.valueOf(100L));
         return regularDiscountAmount.multiply(integralValue);
     }
 

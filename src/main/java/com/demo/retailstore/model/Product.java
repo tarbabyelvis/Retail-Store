@@ -1,9 +1,9 @@
 package com.demo.retailstore.model;
 
-import com.demo.retailstore.model.BaseEntity;
 import lombok.*;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
@@ -14,8 +14,12 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product extends BaseEntity {
+public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", insertable = false, nullable = false, updatable = false)
+    private Long id;
     private String name;
     private String productType;
     private BigDecimal amount;
