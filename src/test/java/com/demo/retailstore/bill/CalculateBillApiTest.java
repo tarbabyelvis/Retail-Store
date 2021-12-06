@@ -54,7 +54,7 @@ class CalculateBillApiTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
-        
+
     }
     public static String asJsonString(final Object obj) {
         try {
