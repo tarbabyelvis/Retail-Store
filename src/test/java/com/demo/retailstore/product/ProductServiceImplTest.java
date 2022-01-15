@@ -16,6 +16,7 @@ class ProductServiceImplTest {
     @BeforeEach
     void setUp() {
      productService = new ProductServiceImpl(productRepository);
+
        Product stove = new Product(1L,"Stove","Electrical", new BigDecimal(400));
        Product television = new Product(2L,"Television","Electrical", new BigDecimal(350));
        Product rice = new Product(3L,"Rice","Grocery", new BigDecimal(90));

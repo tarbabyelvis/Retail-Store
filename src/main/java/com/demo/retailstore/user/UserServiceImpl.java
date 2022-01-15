@@ -20,12 +20,11 @@ public class UserServiceImpl implements UserService{
     @Transactional(readOnly = true)
     public Optional<UserType> getUserType(Long id) {
         Optional<User> userOptional = findUserById(id);
-        if(userOptional.isEmpty())
-            throw new RuntimeException(String.format("User with ID: %d not found!",id));
-        User user = userOptional.get();
+        User user = userOptional.orElseThrow(() -> new RuntimeException(String.format("User with ID: %d not found!",id)));
         return Optional.of(user.getUserType());
     }
     private Optional<User> findUserById(Long userId){
         return userRepository.findById(userId);
     }
+
 }

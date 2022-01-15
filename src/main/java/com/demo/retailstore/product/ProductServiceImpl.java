@@ -18,15 +18,16 @@ public class ProductServiceImpl implements ProductService{
     private final ProductRepository productRepository;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Optional<Product> findById(Long productId) {
         return productRepository.findById(productId);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Product> populateProducts(List<Long> productIds) {
         return productIds.stream()
-                .map(productId ->{
+                .map(productId -> {
                     Optional<Product> productOptional = findById(productId);
                     if(productOptional.isEmpty())
                         throw new RuntimeException(String.format("Product with ID: %d not found",productId));

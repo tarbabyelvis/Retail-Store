@@ -13,9 +13,8 @@ public class DiscountFactory {
     private static final Map<UserType, DiscountService> discountServiceCache = new HashMap<>();
     @Autowired
     private DiscountFactory(Set<DiscountService> discountServices){
-        for(DiscountService service: discountServices){
-            discountServiceCache.put(service.getUserType(),service);
-        }
+        discountServices.stream()
+                .forEach(service -> discountServiceCache.put(service.getUserType(),service));
     }
     public static DiscountService getDiscountService(UserType userType){
         DiscountService discountService = discountServiceCache.get(userType);
